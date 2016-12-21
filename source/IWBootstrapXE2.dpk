@@ -1,11 +1,11 @@
-package IWBootstrapD101;
+package IWBootstrapXE2;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO OFF}
+{$DEBUGINFO ON}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
@@ -28,13 +28,14 @@ package IWBootstrapD101;
 {$DESCRIPTION 'IntraWeb Bootstrap Framework'}
 {$RUNONLY}
 {$IMPLICITBUILD ON}
-
+{$WARN UNIT_DEPRECATED OFF}
+{$WARN SYMBOL_DEPRECATED OFF}
 requires
   rtl,
   vcl,
   vclimg,
   inet,
-  Intraweb_14_D10_1;
+  Intraweb_14_DXE2;
 
 contains
   IWBSUtils in 'IWBSUtils.pas',
@@ -64,7 +65,8 @@ contains
   IWBSInputForm in 'IWBSInputForm.pas',
   IWBSNavBar in 'IWBSNavBar.pas',
   IWBSCustomRegion in 'IWBSCustomRegion.pas',
-  IWBSCommonInterfaces in 'IWBSCommonInterfaces.pas',
-  IWBSDeprecated in 'IWBSDeprecated.pas';
-
+  IWBSCommonInterfaces in 'IWBSCommonInterfaces.pas';
 end.
+
+
+

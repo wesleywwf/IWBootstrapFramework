@@ -2,9 +2,12 @@ unit IWBSCommon;
 
 interface
 
+{$Include IWBootstrap.inc}
+
 uses Classes, SysUtils, StrUtils, Forms,
      IWApplication, IWRenderContext, IWControl, IWHTML40Interfaces, IWBaseHTMLInterfaces, IWTypes,
      IWBaseInterfaces, IWHTMLTag, IWBaseRenderContext,
+     {$IFDEF IW_14_1_0_UP} IW.Common.StrLists, {$ENDIF}
      IWBSJsonDataObjects, IWBSCommonInterfaces;
 
 const
@@ -91,18 +94,18 @@ type
     class function RenderHTMLTag(AControl: IIWBSComponent; AContext: TIWCompContext): string;
     class function RenderStyle(AComponent: IIWBSComponent): string;
     class function ReplaceParams(AComponent: IIWBSComponent; const AScript: string; AFrom: integer = 1): string;
-    class procedure SetNotVisible(AParams: TStrings);
+    class procedure SetNotVisible(AParams: {$IFDEF IW_14_1_0_UP} TIWNameValueList {$ELSE} TStrings {$ENDIF});
     class procedure ValidateParamName(const AName: string);
     class procedure ValidateTagName(const AName: string);
 
-    class procedure SetAsyncDisabled(AApplication: TIWApplication; const HTMLName: string; Value: boolean; var OldValue: boolean);
-    class procedure SetAsyncReadOnly(AApplication: TIWApplication; const HTMLName: string; Value: boolean; var OldValue: boolean);
-    class procedure SetAsyncVisible(AApplication: TIWApplication; const HTMLName: string; Value: boolean; var OldValue: boolean);
-    class procedure SetAsyncClass(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
-    class procedure SetAsyncStyle(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
-    class procedure SetAsyncChecked(AApplication: TIWApplication; const HTMLName: string; const Value: boolean; var OldValue: boolean);
-    class procedure SetAsyncText(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
-    class procedure SetAsyncHtml(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
+    class procedure SetAsyncDisabled(AApplication: TIWApplication; const AHTMLName: string; Value: boolean; var OldValue: boolean);
+    class procedure SetAsyncReadOnly(AApplication: TIWApplication; const AHTMLName: string; Value: boolean; var OldValue: boolean);
+    class procedure SetAsyncVisible(AApplication: TIWApplication; const AHTMLName: string; Value: boolean; var OldValue: boolean);
+    class procedure SetAsyncClass(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
+    class procedure SetAsyncStyle(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
+    class procedure SetAsyncChecked(AApplication: TIWApplication; const AHTMLName: string; const Value: boolean; var OldValue: boolean);
+    class procedure SetAsyncText(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
+    class procedure SetAsyncHtml(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
   end;
 
   TIWBSRegionCommon = class
@@ -560,7 +563,7 @@ begin
       raise Exception.Create('Invalid character in tag name '+AName);
 end;
 
-class procedure TIWBSCommon.SetNotVisible(AParams: TStrings);
+class procedure TIWBSCommon.SetNotVisible(AParams: {$IFDEF IW_14_1_0_UP} TIWNameValueList {$ELSE} TStrings {$ENDIF});
 var
   LStyle: string;
 begin
@@ -575,67 +578,67 @@ begin
   AParams.Values['style'] := LStyle;
 end;
 
-class procedure TIWBSCommon.SetAsyncDisabled(AApplication: TIWApplication; const HTMLName: string; Value: boolean; var OldValue: boolean);
+class procedure TIWBSCommon.SetAsyncDisabled(AApplication: TIWApplication; const AHTMLName: string; Value: boolean; var OldValue: boolean);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").prop("disabled",'+iif(Value,'true','false')+');', False, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").prop("disabled",'+iif(Value,'true','false')+');', False, True);
     OldValue := Value;
   end;
 end;
 
-class procedure TIWBSCommon.SetAsyncReadOnly(AApplication: TIWApplication; const HTMLName: string; Value: boolean; var OldValue: boolean);
+class procedure TIWBSCommon.SetAsyncReadOnly(AApplication: TIWApplication; const AHTMLName: string; Value: boolean; var OldValue: boolean);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").prop("readonly",'+iif(Value,'true','false')+');', False, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").prop("readonly",'+iif(Value,'true','false')+');', False, True);
     OldValue := Value;
   end;
 end;
 
-class procedure TIWBSCommon.SetAsyncVisible(AApplication: TIWApplication; const HTMLName: string; Value: boolean; var OldValue: boolean);
+class procedure TIWBSCommon.SetAsyncVisible(AApplication: TIWApplication; const AHTMLName: string; Value: boolean; var OldValue: boolean);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").css("visibility","'+iif(Value,'','hidden')+'");', False, True);
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").css("display","'+iif(Value,'','none')+'");', False, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").css("visibility","'+iif(Value,'','hidden')+'");', False, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").css("display","'+iif(Value,'','none')+'");', False, True);
     OldValue := Value;
   end;
 end;
 
-class procedure TIWBSCommon.SetAsyncText(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
+class procedure TIWBSCommon.SetAsyncText(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").val("'+TIWBaseHTMLControl.TextToJSStringLiteral(Value)+'");', True, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").val("'+TIWBaseHTMLControl.TextToJSStringLiteral(Value)+'");', True, True);
     OldValue := Value;
   end;
 end;
 
-class procedure TIWBSCommon.SetAsyncHtml(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
+class procedure TIWBSCommon.SetAsyncHtml(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").html("'+IWBSTextToJsParamText(Value)+'");', True, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").html("'+IWBSTextToJsParamText(Value)+'");', True, True);
     OldValue := Value;
   end;
 end;
 
-class procedure TIWBSCommon.SetAsyncClass(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
+class procedure TIWBSCommon.SetAsyncClass(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").removeClass().addClass("'+Value+'");', False, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").removeClass().addClass("'+Value+'");', False, True);
     OldValue := Value;
   end;
 end;
 
-class procedure TIWBSCommon.SetAsyncStyle(AApplication: TIWApplication; const HTMLName: string; const Value: string; var OldValue: string);
+class procedure TIWBSCommon.SetAsyncStyle(AApplication: TIWApplication; const AHTMLName: string; const Value: string; var OldValue: string);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").prop("style","'+Value+'");', False, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").prop("style","'+Value+'");', False, True);
     OldValue := Value;
   end;
 end;
 
-class procedure TIWBSCommon.SetAsyncChecked(AApplication: TIWApplication; const HTMLName: string; const Value: boolean; var OldValue: boolean);
+class procedure TIWBSCommon.SetAsyncChecked(AApplication: TIWApplication; const AHTMLName: string; const Value: boolean; var OldValue: boolean);
 begin
   if OldValue <> Value then begin
-    IWBSExecuteAsyncJScript(AApplication,'$("#'+HTMLName+'").prop("checked",'+iif(Value,'true','false')+');', False, True);
+    IWBSExecuteAsyncJScript(AApplication,'$("#'+AHTMLName+'").prop("checked",'+iif(Value,'true','false')+');', False, True);
     OldValue := Value;
   end;
 end;

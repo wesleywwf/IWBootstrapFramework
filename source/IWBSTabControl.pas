@@ -2,6 +2,8 @@ unit IWBSTabControl;
 
 interface
 
+{$Include IWBootstrap.inc}
+
 uses
   SysUtils, Classes, StrUtils,
   IWApplication, IWBaseRenderContext, IWControl, IWBaseInterfaces,
@@ -125,7 +127,9 @@ type
 
 implementation
 
-uses IWLists, IW.Common.System, IWBSutils, IWBSLayoutMgr, IWBSScriptEvents, IWBSGlobal;
+uses
+  IW.Common.System, {$IFNDEF IW_14_1_0_UP} IWLists, {$ELSE} IW.Common.Lists, {$ENDIF}
+  IWBSutils, IWBSLayoutMgr, IWBSScriptEvents, IWBSGlobal;
 
 {$region 'TIWBSTabOptions'}
 constructor TIWBSTabOptions.Create(AOwner: TComponent);
@@ -400,7 +404,7 @@ begin
       TIWBSCommon.SetAsyncStyle(xApplication, xHTMLName, RenderStyle(AContext), FOldStyle);
       TIWBSCommon.SetAsyncVisible(xApplication, FMainID, Visible, FOldVisible);
       if FOldActivePage <> FActivePage then begin
-        IWBSExecuteAsyncJScript(xApplication,'$("#'+HTMLName+'_tabs a[tabindex='+IntToStr(TabOrderToTabIndex(FActivePage))+']").tab("show");', False, True);
+        IWBSExecuteAsyncJScript(xApplication,'$("#'+xHTMLName+'_tabs a[tabindex='+IntToStr(TabOrderToTabIndex(FActivePage))+']").tab("show");', False, True);
         FOldActivePage := FActivePage;
       end;
 
