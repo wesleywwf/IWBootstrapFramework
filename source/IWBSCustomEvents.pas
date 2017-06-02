@@ -78,6 +78,7 @@ type
     procedure Assign(Source: TPersistent); override;
     procedure RegisterEvent(AApplication: TIWApplication; const AComponentName: string);
     procedure ParseParam(AScript: TStringList);
+    property RestEventPath: string read FRestEventPath;
   published
     property EventName: string read FEventName write SetEventName;
     property OnRestEvent: TIWBSRestCallBackFunction read FRestEvent write FRestEvent;
@@ -95,7 +96,7 @@ type
 
 implementation
 
-uses IWBSCommon, IWBSCustomControl;
+uses IWBSCommon;
 
 {$region 'TIWBSCustomAsyncEvent'}
 constructor TIWBSCustomAsyncEvent.Create(Collection: TCollection);

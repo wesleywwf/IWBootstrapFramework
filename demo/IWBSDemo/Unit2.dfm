@@ -190,6 +190,11 @@ object IWForm2: TIWForm2
             BorderOptions.Color = clNone
             Color = clWebSILVER
             ZIndex = 1000
+            TabPadding = 0
+            ActiveTabBorder.Color = clWebBLACK
+            ActiveTabBorder.Width = 0
+            InactiveTabBorder.Color = clWebBLACK
+            InactiveTabBorder.Width = 0
             BSTabOptions.Pills = True
             DesignSize = (
               1392
@@ -1625,125 +1630,124 @@ object IWForm2: TIWForm2
                 end
               end
             end
-            object IWTabControl21Page6: TIWTabPage
+            object IWTabControl21Page2: TIWTabPage
               Left = 0
               Top = 20
               Width = 1392
               Height = 1454
               RenderInvisibleControls = True
-              TabOrder = 15
-              Title = 'Miscellaneous'
+              TabOrder = 12
+              Title = 'TabControl Options'
               BorderOptions.NumericWidth = 0
               BorderOptions.BorderWidth = cbwNumeric
               BorderOptions.Style = cbsNone
               BorderOptions.Color = clNone
               Color = clWebWHITE
-              object IWBSRegion33: TIWBSRegion
-                Left = 35
-                Top = 121
-                Width = 700
-                Height = 91
+              object IWBSRegion37: TIWBSRegion
+                Left = 29
+                Top = 5
+                Width = 561
+                Height = 637
+                BSGridOptions.GridSmSpan = 6
                 Css = ''
+                Style.Strings = (
+                  'margin: 1em')
                 Text = ''
-                BSRegionType = bsrtWell
-                object IWBSInput25: TIWBSInput
-                  Left = 17
-                  Top = 18
-                  Width = 201
-                  Height = 25
-                  ExtraTagParams.Strings = (
-                    '')
-                  FriendlyName = 'IWBSInput1'
-                  ScriptInsideTag = True
-                  Caption = 'Input Type Text'
-                  Text = ''
-                  BSTextAlignment = bstaCenter
-                  PlaceHolder = 'Name'
-                end
-                object IWBSButton41: TIWBSButton
-                  Left = 16
-                  Top = 55
-                  Width = 223
-                  Height = 25
-                  FriendlyName = 'IWBSButton41'
-                  ScriptEvents = <
-                    item
-                      EventCode.Strings = (
-                        '$("#IWBSINPUT25").val("this text was setted with ScriptEvents");')
-                      Event = 'onClick'
-                    end>
-                  Caption = 'OnClick scriptEvent'
-                end
-              end
-              object IWBSRegion29: TIWBSRegion
-                Left = 35
-                Top = 325
-                Width = 702
-                Height = 381
-                Css = ''
-                Collapse = True
-                CollapseVisible = True
-                Text = ''
-                BSRegionType = bsrtWell
-                object IWBSLabel3: TIWBSLabel
-                  Left = 20
-                  Top = 13
-                  Width = 361
-                  Height = 24
-                  FriendlyName = 'IWBSLabel3'
-                  Caption = 'File upload using Form Custom Submit event, (select a text file)'
-                end
-                object IWBSText2: TIWBSText
-                  Left = 20
-                  Top = 46
-                  Width = 635
-                  Height = 123
-                  FriendlyName = 'IWBSText2'
-                end
-                object IWBSInputForm5: TIWBSInputForm
-                  Left = 20
-                  Top = 203
-                  Width = 635
-                  Height = 138
+                object IWBSRegion7: TIWBSRegion
+                  Left = 15
+                  Top = 6
+                  Width = 433
+                  Height = 303
                   Css = ''
                   Text = ''
-                  OnSubmit = IWBSInputForm5Submit
-                  object IWBSButton45: TIWBSButton
-                    Left = 22
-                    Top = 101
-                    Width = 200
-                    Height = 25
-                    FriendlyName = 'IWBSButton45'
-                    Caption = 'Submit File'
-                  end
-                  object IWBSInput26: TIWBSFile
-                    Left = 22
-                    Top = 55
-                    Width = 151
-                    Height = 25
-                    FriendlyName = 'IWBSInput26'
+                  BSRegionType = bsrtWell
+                  object IWBSInputForm1: TIWBSInputForm
+                    Left = 16
+                    Top = 13
+                    Width = 293
+                    Height = 206
+                    Css = ''
+                    Text = ''
+                    object IWBSButton30: TIWBSButton
+                      Left = 26
+                      Top = 148
+                      Width = 184
+                      Height = 25
+                      RenderSize = False
+                      StyleRenderOptions.RenderSize = False
+                      FriendlyName = 'IWBSButton20aaaaaa'
+                      OnAsyncClick = IWBSButton30AsyncClick
+                      Caption = 'Apply settings'
+                    end
+                    object chkTabsJust: TIWBSCheckBox
+                      Left = 25
+                      Top = 30
+                      Width = 121
+                      Height = 21
+                      FriendlyName = 'chkTabsJust'
+                      ScriptInsideTag = True
+                      Caption = 'Tabs Justified'
+                      Text = 'false'
+                      ValueChecked = 'true'
+                      ValueUnchecked = 'false'
+                    end
+                    object chkTabsStacked: TIWBSCheckBox
+                      Left = 25
+                      Top = 57
+                      Width = 121
+                      Height = 21
+                      FriendlyName = 'chkTabsStacked'
+                      ScriptInsideTag = True
+                      Caption = 'Tabs Stacked'
+                      Text = 'false'
+                      ValueChecked = 'true'
+                      ValueUnchecked = 'false'
+                    end
+                    object chkTabsPills: TIWBSCheckBox
+                      Left = 25
+                      Top = 88
+                      Width = 121
+                      Height = 21
+                      FriendlyName = 'chkTabsPills'
+                      ScriptInsideTag = True
+                      Caption = 'Tabs Pills'
+                      Text = 'true'
+                      Checked = True
+                      ValueChecked = 'true'
+                      ValueUnchecked = 'false'
+                    end
+                    object chkTabsFade: TIWBSCheckBox
+                      Left = 26
+                      Top = 115
+                      Width = 121
+                      Height = 21
+                      FriendlyName = 'chkTabsFade'
+                      ScriptInsideTag = True
+                      Caption = 'Tabs Fade'
+                      Text = 'false'
+                      ValueChecked = 'true'
+                      ValueUnchecked = 'false'
+                    end
                   end
                 end
-              end
-              object IWBSRegion77: TIWBSRegion
-                Left = 35
-                Top = 234
-                Width = 581
-                Height = 79
-                Css = ''
-                Text = 'Basic File Upload'
-                BSRegionType = bsrtPageHeader
-                TagType = bsttH2
-              end
-              object IWBSRegion32: TIWBSRegion
-                Left = 35
-                Top = 29
-                Width = 581
-                Height = 73
-                Css = ''
-                Text = 'Direct JS'
-                BSRegionType = bsrtPageHeader
-                TagType = bsttH2
+                object IWBSRegion36: TIWBSRegion
+                  Left = 12
+                  Top = 326
+                  Width = 438
+                  Height = 60
+                  Css = ''
+                  Text = ''
+                  BSRegionType = bsrtWell
+                  object IWBSButton42: TIWBSButton
+                    Left = 26
+                    Top = 18
+                    Width = 329
+                    Height = 25
+                    FriendlyName = 'IWBSButton42'
+                    OnAsyncClick = IWBSButton42AsyncClick
+                    Caption = 'Toggle TabPage visibility'
+                  end
+                end
               end
             end
             object IWTabControl21Page3: TIWTabPage
@@ -2341,123 +2345,157 @@ object IWForm2: TIWForm2
                 end
               end
             end
-            object IWTabControl21Page2: TIWTabPage
+            object IWTabControl21Page6: TIWTabPage
               Left = 0
               Top = 20
               Width = 1392
               Height = 1454
               RenderInvisibleControls = True
-              TabOrder = 12
-              Title = 'TabControl Options'
+              TabOrder = 15
+              Title = 'Miscellaneous'
               BorderOptions.NumericWidth = 0
               BorderOptions.BorderWidth = cbwNumeric
               BorderOptions.Style = cbsNone
               BorderOptions.Color = clNone
               Color = clWebWHITE
-              object IWBSRegion37: TIWBSRegion
-                Left = 29
-                Top = 5
-                Width = 561
-                Height = 637
-                BSGridOptions.GridSmSpan = 6
+              object IWBSRegion33: TIWBSRegion
+                Left = 35
+                Top = 121
+                Width = 700
+                Height = 91
                 Css = ''
-                Style.Strings = (
-                  'margin: 1em')
                 Text = ''
-                object IWBSRegion7: TIWBSRegion
-                  Left = 15
-                  Top = 6
-                  Width = 433
-                  Height = 303
+                BSRegionType = bsrtWell
+                object IWBSInput25: TIWBSInput
+                  Left = 17
+                  Top = 18
+                  Width = 201
+                  Height = 25
+                  ExtraTagParams.Strings = (
+                    '')
+                  FriendlyName = 'IWBSInput1'
+                  ScriptInsideTag = True
+                  Caption = 'Input Type Text'
+                  Text = ''
+                  BSTextAlignment = bstaCenter
+                  PlaceHolder = 'Name'
+                end
+                object IWBSButton41: TIWBSButton
+                  Left = 16
+                  Top = 55
+                  Width = 223
+                  Height = 25
+                  FriendlyName = 'IWBSButton41'
+                  ScriptEvents = <
+                    item
+                      EventCode.Strings = (
+                        '$("#IWBSINPUT25").val("this text was setted with ScriptEvents");')
+                      Event = 'onClick'
+                    end>
+                  Caption = 'OnClick scriptEvent'
+                end
+              end
+              object IWBSRegion29: TIWBSRegion
+                Left = 35
+                Top = 325
+                Width = 702
+                Height = 381
+                Css = ''
+                Collapse = True
+                CollapseVisible = True
+                Text = ''
+                BSRegionType = bsrtWell
+                object IWBSLabel3: TIWBSLabel
+                  Left = 20
+                  Top = 13
+                  Width = 361
+                  Height = 24
+                  FriendlyName = 'IWBSLabel3'
+                  Caption = 'File upload using Form Custom Submit event, (select a text file)'
+                end
+                object IWBSText2: TIWBSText
+                  Left = 20
+                  Top = 46
+                  Width = 635
+                  Height = 123
+                  FriendlyName = 'IWBSText2'
+                end
+                object IWBSInputForm5: TIWBSInputForm
+                  Left = 20
+                  Top = 203
+                  Width = 635
+                  Height = 138
                   Css = ''
                   Text = ''
-                  BSRegionType = bsrtWell
-                  object IWBSInputForm1: TIWBSInputForm
-                    Left = 16
-                    Top = 13
-                    Width = 293
-                    Height = 206
-                    Css = ''
-                    Text = ''
-                    object IWBSButton30: TIWBSButton
-                      Left = 26
-                      Top = 148
-                      Width = 184
-                      Height = 25
-                      RenderSize = False
-                      StyleRenderOptions.RenderSize = False
-                      FriendlyName = 'IWBSButton20aaaaaa'
-                      OnAsyncClick = IWBSButton30AsyncClick
-                      Caption = 'Apply settings'
-                    end
-                    object chkTabsJust: TIWBSCheckBox
-                      Left = 25
-                      Top = 30
-                      Width = 121
-                      Height = 21
-                      FriendlyName = 'chkTabsJust'
-                      ScriptInsideTag = True
-                      Caption = 'Tabs Justified'
-                      Text = 'false'
-                      ValueChecked = 'true'
-                      ValueUnchecked = 'false'
-                    end
-                    object chkTabsStacked: TIWBSCheckBox
-                      Left = 25
-                      Top = 57
-                      Width = 121
-                      Height = 21
-                      FriendlyName = 'chkTabsStacked'
-                      ScriptInsideTag = True
-                      Caption = 'Tabs Stacked'
-                      Text = 'false'
-                      ValueChecked = 'true'
-                      ValueUnchecked = 'false'
-                    end
-                    object chkTabsPills: TIWBSCheckBox
-                      Left = 25
-                      Top = 88
-                      Width = 121
-                      Height = 21
-                      FriendlyName = 'chkTabsPills'
-                      ScriptInsideTag = True
-                      Caption = 'Tabs Pills'
-                      Text = 'true'
-                      Checked = True
-                      ValueChecked = 'true'
-                      ValueUnchecked = 'false'
-                    end
-                    object chkTabsFade: TIWBSCheckBox
-                      Left = 26
-                      Top = 115
-                      Width = 121
-                      Height = 21
-                      FriendlyName = 'chkTabsFade'
-                      ScriptInsideTag = True
-                      Caption = 'Tabs Fade'
-                      Text = 'false'
-                      ValueChecked = 'true'
-                      ValueUnchecked = 'false'
-                    end
+                  OnSubmit = IWBSInputForm5Submit
+                  object IWBSButton45: TIWBSButton
+                    Left = 22
+                    Top = 101
+                    Width = 200
+                    Height = 25
+                    FriendlyName = 'IWBSButton45'
+                    Caption = 'Submit File'
+                  end
+                  object IWBSInput26: TIWBSFile
+                    Left = 22
+                    Top = 55
+                    Width = 151
+                    Height = 25
+                    FriendlyName = 'IWBSInput26'
                   end
                 end
-                object IWBSRegion36: TIWBSRegion
-                  Left = 12
-                  Top = 326
-                  Width = 438
-                  Height = 60
-                  Css = ''
-                  Text = ''
-                  BSRegionType = bsrtWell
-                  object IWBSButton42: TIWBSButton
-                    Left = 26
-                    Top = 18
-                    Width = 329
-                    Height = 25
-                    FriendlyName = 'IWBSButton42'
-                    OnAsyncClick = IWBSButton42AsyncClick
-                    Caption = 'Toggle TabPage visibility'
-                  end
+              end
+              object IWBSRegion77: TIWBSRegion
+                Left = 35
+                Top = 234
+                Width = 581
+                Height = 79
+                Css = ''
+                Text = 'Basic File Upload'
+                BSRegionType = bsrtPageHeader
+                TagType = bsttH2
+              end
+              object IWBSRegion32: TIWBSRegion
+                Left = 35
+                Top = 29
+                Width = 581
+                Height = 73
+                Css = ''
+                Text = 'Direct JS'
+                BSRegionType = bsrtPageHeader
+                TagType = bsttH2
+              end
+              object IWBSRegion95: TIWBSRegion
+                Left = 37
+                Top = 724
+                Width = 581
+                Height = 79
+                Css = ''
+                Text = 'Ajax File Download'
+                BSRegionType = bsrtPageHeader
+                TagType = bsttH2
+              end
+              object IWBSRegion96: TIWBSRegion
+                Left = 37
+                Top = 815
+                Width = 716
+                Height = 78
+                Css = ''
+                Text = ''
+                BSRegionType = bsrtWell
+                object IWBSButton99: TIWBSButton
+                  Left = 21
+                  Top = 34
+                  Width = 223
+                  Height = 25
+                  CustomRestEvents = <
+                    item
+                      EventName = 'downloadfile'
+                      OnRestEvent = IWBSButton99CustomRestEvents0RestEvent
+                    end>
+                  FriendlyName = 'IWBSButton41'
+                  OnAsyncClick = IWBSButton99AsyncClick
+                  Caption = 'Download via ajax'
                 end
               end
             end
@@ -2902,8 +2940,6 @@ object IWForm2: TIWForm2
                     Top = 35
                     Width = 201
                     Height = 25
-                    ExtraTagParams.Strings = (
-                      '')
                     FriendlyName = 'IWBSInput1'
                     ScriptInsideTag = True
                     Caption = 'Input Type Text'
@@ -3242,7 +3278,7 @@ object IWForm2: TIWForm2
     end
   end
   object IWBSLayoutMgr1: TIWBSLayoutMgr
-    Left = 696
-    Top = 223
+    Left = 672
+    Top = 203
   end
 end
